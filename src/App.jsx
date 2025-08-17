@@ -1,18 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import {getAllTweets} from "./api/client"
+import { Outlet } from 'react-router-dom'
 
 function App() {
 
-  const [tweets, setTweets] = useState([])
-
-  useEffect(()=>{
-
-  }, [])
-
   return (
-    <div className='text-violet-700'>
-      hello world
-    </div>
+    <Outlet/>
   )
 }
 

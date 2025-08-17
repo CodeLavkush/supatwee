@@ -6,8 +6,8 @@ const client = createClient(
     conf.clientApiKey,
 )
 
-async function signUp(payload) {
-    const { data, error } = await client.auth.signUp(payload)
+async function signUp({email, password, full_name, age, gender}) {
+    const { data, error } = await client.auth.signUp({email, password, options: {data: {full_name, age, gender}}})
     if(error){
         return error 
     }
@@ -19,7 +19,7 @@ async function signUp(payload) {
 async function login(payload) {
     const { data, error } = await client.auth.signInWithPassword(payload)
     if(error){
-        return error 
+        throw error 
     }
     else{
         return data
@@ -37,32 +37,36 @@ async function getUser() {
 }
 
 async function logout() {
-    let { error } = await supabase.auth.signOut()
+    let { error } = await client.auth.signOut()
 
-    if(error){
-        return error
-    }
+    if(error) throw error
+    return true
 }
 
 async function getAllTweets() {
-    let {data: tweets, error } = await client.from("Tweets").select("*")
+    let { data, error } = await client.from("Tweets").select("*")
     if(error){
         return error
     }
     else{
-        return tweets
+        return data
     }
 }
 
 async function addTweet(payload) {
     const { data, error } = await client.from("Tweets").insert([payload]).select()
-}
-
-async function deleteTweet(tweet_id) {
-    const { error } = await client.from('Tweets').delete().eq('tweet_id', tweet_id)
     if(error){
         return error
     }
+    else{
+        return data
+    }
+}
+
+async function deleteTweet(tweet_id) {
+    const { data, error } = await client.from('Tweets').delete().eq('tweet_id', tweet_id).select()
+    if(error) throw error
+    return data
 }
 
 export {
