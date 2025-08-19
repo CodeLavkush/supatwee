@@ -46,9 +46,7 @@ function Home() {
         console.error("ERROR:", error)
       }
   }
-  useEffect(()=>{
-    console.log(userData)
-  }, [userStatus])
+
   const handleLogout = async ()=>{
     try{
       const res = await logout()
@@ -66,7 +64,7 @@ function Home() {
         <div className='w-200 h-200 bg-gray-700 rounded-4xl p-4 flex flex-col gap-4'>
           <div className='w-full flex justify-between items-center'>
             <h2 className='text-2xl text-white font-bold tracking-wide'>Tweets</h2>
-            <p className='text-2xl text-white font-bold'>{userData ? userData?.user?.user_metadata?.full_name : ""}</p>
+            <p className='text-2xl text-white font-bold'>{userData ? userData?.user_metadata?.full_name : ""}</p>
             <div className=' h-10 flex justify-center gap-4 items-center'>
               {userStatus ? <button onClick={()=> (navigate('/addpost'))} className="btn w-40 btn-primary">Add Post</button> : ""}
               {userStatus ? <button onClick={()=> handleLogout()} className="btn w-40 btn-error">Logout</button> : ""} 
