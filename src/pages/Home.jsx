@@ -77,14 +77,14 @@ function Home() {
           <div className='rounded-4xl p-4 flex flex-col gap-4 w-full h-full overflow-y-scroll'>
             {
               tweets.map((tweet)=> (
-                <Card key={tweet.tweet_id}>
+                <Card key={tweet?.tweet_id}>
                   <CardHeader>
-                    <CardTitle>{tweet.title}</CardTitle>
-                    <CardDescription>{tweet.body}</CardDescription>
+                    <CardTitle>{tweet?.title}</CardTitle>
+                    <CardDescription>{tweet?.body}</CardDescription>
                   </CardHeader>
                     <CardFooter className="flex gap-4">
-                      <p>{tweet.posted_on.split("T")[0]}</p>
-                      {userStatus && userData.user.id == tweet.user_id ? <button onClick={()=> handleDelete(tweet.tweet_id)} className="btn btn-error">delete</button> : ''}
+                      <p>{tweet?.posted_on.split("T")[0]}</p>
+                      {userStatus && userData?.user?.id == tweet?.user_id ? <button onClick={()=> handleDelete(tweet.tweet_id)} className="btn btn-error">delete</button> : ''}
                     </CardFooter>
                 </Card>
               ))
