@@ -41,7 +41,7 @@ function Signup() {
         "password": password,
       }
       const res = await signUp(data)
-      if(res != null){
+      if(res.user != null){
         navigate("/")
       }
     } catch (error) {

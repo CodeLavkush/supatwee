@@ -28,8 +28,8 @@ function Signin() {
     e.preventDefault()
     try {
       const res = await login({"email": email, "password": password})
-      if(res){
-        dispatch(authLogin(res))
+      if(res.user){
+        dispatch(authLogin(res.user))
         navigate("/")
       }
     } catch (error) {
