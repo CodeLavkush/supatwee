@@ -32,7 +32,6 @@ function Signup() {
   const navigate = useNavigate()
 
   const handleSubmit = async (e)=>{
-    e.preventDefault()
     try {
       const data = {
         "full_name": name,
@@ -42,7 +41,7 @@ function Signup() {
       }
       const res = await signUp(data)
       if(res != null){
-        // navigate("/")
+        navigate("/")
       }
     } catch (error) {
       console.error("ERROR:", error)
