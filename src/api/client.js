@@ -4,6 +4,13 @@ import conf from "../conf/conf"
 const client = createClient(
     conf.projectUrl,
     conf.clientApiKey,
+    {
+        auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true,
+        }
+    }
 )
 
 async function signUp({email, password, full_name, age, gender}) {
@@ -70,6 +77,7 @@ async function deleteTweet(tweet_id) {
 }
 
 export {
+    client,
     signUp,
     login,
     getUser,
