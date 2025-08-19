@@ -1,12 +1,25 @@
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from './userSlice'
 import tweetSlice from './tweetSlice'
+import storage from 'redux-persist/lib/storage'
+import { persistReducer, persistStore } from "redux-persist";
+import { combineReducers } from "@reduxjs/toolkit";
 
-const store = configureStore({
-    reducer: {
-        user: userSlice,
-        tweets: tweetSlice
-    }
+const persistConfig = {
+    key: 'root',
+    storage,
+    whitelist: ["user", "tweets"],
+}
+
+const rootReducer = combineReducers({
+    user: userSlice,
+    tweets: tweetSlice
 })
 
-export default store
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const store = configureStore({
+    reducer: persistedReducer,
+})
+
+export const persistor = persistStore(store)
