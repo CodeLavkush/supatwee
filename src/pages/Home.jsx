@@ -84,7 +84,7 @@ function Home() {
                   </CardHeader>
                     <CardFooter className="flex gap-4">
                       <p>{tweet?.posted_on.split("T")[0]}</p>
-                      {userStatus && userData?.user?.id == tweet?.user_id ? <button onClick={()=> handleDelete(tweet.tweet_id)} className="btn btn-error">delete</button> : ''}
+                      {userStatus && userData?.id == tweet?.user_id ? <button onClick={()=> handleDelete(tweet.tweet_id)} className="btn btn-error">Delete</button> : ''}
                     </CardFooter>
                 </Card>
               ))
