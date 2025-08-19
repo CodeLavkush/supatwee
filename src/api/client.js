@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js"
 import conf from "../conf/conf"
+import { persistor } from "@/store/store"
 
 const client = createClient(
     conf.projectUrl,
@@ -45,6 +46,7 @@ async function getUser() {
 
 async function logout() {
     let { error } = await client.auth.signOut()
+    persistor.purge()
 
     if(error) throw error
     return true
