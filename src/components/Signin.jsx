@@ -25,6 +25,7 @@ function Signin() {
 
 
   const signin = async (e)=>{
+    e.preventDefault()
     try {
       const res = await login({"email": email, "password": password})
       if(res){

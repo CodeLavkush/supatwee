@@ -32,6 +32,7 @@ function Signup() {
   const navigate = useNavigate()
 
   const handleSubmit = async (e)=>{
+    e.preventDefault()
     try {
       const data = {
         "full_name": name,

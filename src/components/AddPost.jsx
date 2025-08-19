@@ -14,6 +14,7 @@ function AddPost() {
   const dispatch = useDispatch()
 
   const handleSubmit = async (e)=>{
+    e.preventDefault()
     try {
       const res = await addTweet({"title": title, "body": message})
       if(res != null){
